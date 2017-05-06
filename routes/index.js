@@ -16,10 +16,19 @@ router.route('/users/update/:id')
 router.route('/users/search/:reg')
   .get(userController.regexsearch);
 
-router.route('/doc/post/:id')             //Route to post in Doctor schema 
+
+//Route to check the promise result
+router.route('/promise/reply')
+  .get(userController.promiseuse);
+
+
+//Route to post in Doctor schema 
+router.route('/doc/post/:id')             
   .post(userController.postDoc);
 
-router.route('/phar/post/:id')            //Route to post in Pharmacist schema
+
+//Route to post in Pharmacist schema
+router.route('/phar/post/:id')            
   .post(userController.postPhar);
 
 

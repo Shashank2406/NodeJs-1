@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var Doc = require('../models/doc');
 var Phar = require('../models/phar');
+var Promise = require("bluebird");
 
 
 
@@ -27,7 +28,51 @@ exports.postUsers = function (req, res) {
     });
 };
 
-exports.postDoc = function (req,res){                       //PostDoc function post data to doctor schema
+exports.getUsers=function(req,res){
+    User.find({}, function(err, response){
+        if(err) {
+            return res.json(req, res, err);
+        }
+
+        res.json(response);
+    })
+}
+
+//Use of promise to get the data in an array
+exports.promiseuse= function(req,res){                  
+    User.find({}).exec()
+    .then(function(user){
+        var ar = [];
+        return Doc.find({}).exec()
+        .then(function(doc){
+            if(doc.id==user._id)
+            {
+                console.log("Doctor");
+                ar.push(doc);
+                console.log(ar);
+                return res.json("Check Log")
+            }
+        })
+        .then(function(){
+            var ar1 = [];
+            return Phar.find({}).exec()
+            .then(function(phar){
+            if(phar.id==user._id)
+            {
+                console.log("Pharmacist");
+                ar1.push(phar);
+                console.log(ar1);
+                //return res.json(phar)
+            }
+        })
+        })
+        //return res.json(user)
+    })
+}
+
+//PostDoc function post data to doctor schema
+
+exports.postDoc = function (req,res){                       
     var doc = new Doc({
         name: req.body.name,
         designation: req.body.designation,
@@ -51,7 +96,9 @@ exports.postDoc = function (req,res){                       //PostDoc function p
     })
 }
 
-exports.postPhar = function (req,res){                       //PostPhar function post data to Pharmacist schema
+//PostPhar function post data to Pharmacist schema
+
+exports.postPhar = function (req,res){                       
     var phar = new Phar({
         name: req.body.name,
         designation: req.body.designation,
@@ -76,16 +123,6 @@ exports.postPhar = function (req,res){                       //PostPhar function
 }
 
 
-
-exports.getUsers=function(req,res){
-    User.find({}, function(err, response){
-        if(err) {
-            return res.json(req, res, err);
-        }
-
-        res.json(response);
-    })
-}
 
 
 
