@@ -4,40 +4,6 @@ var Phar = require('../models/phar');
 var Promise = require("bluebird");
 
 
-
-exports.postUsers = function (req, res) {
-    var user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        name: req.body.name,
-        phone_number: req.body.phone_number,
-        created_at: new Date(),
-        updated_at: ""
-    });
-
-    user.save(function (err, response) {
-        if(err) {
-            return customHandleError(req, res, next, err);
-        }
-
-        res.json({
-            success: true,
-            body: response
-        })
-        
-    });
-};
-
-exports.getUsers=function(req,res){
-    User.find({}, function(err, response){
-        if(err) {
-            return res.json(req, res, err);
-        }
-
-        res.json(response);
-    })
-}
-
 //Use of promise to get the data in an array
 exports.promiseuse= function(req,res){                  
     User.find({}).exec()
@@ -122,8 +88,38 @@ exports.postPhar = function (req,res){
     })
 }
 
+exports.postUsers = function (req, res) {
+    var user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        name: req.body.name,
+        phone_number: req.body.phone_number,
+        created_at: new Date(),
+        updated_at: ""
+    });
 
+    user.save(function (err, response) {
+        if(err) {
+            return customHandleError(req, res, next, err);
+        }
 
+        res.json({
+            success: true,
+            body: response
+        })
+        
+    });
+};
+
+exports.getUsers=function(req,res){
+    User.find({}, function(err, response){
+        if(err) {
+            return res.json(req, res, err);
+        }
+
+        res.json(response);
+    })
+}
 
 
 exports.updateUsers=function(req,res){
