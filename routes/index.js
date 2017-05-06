@@ -20,7 +20,7 @@ router.route('/doc/post/:id')             //Route to post in Doctor schema
   .post(userController.postDoc);
 
 router.route('/phar/post/:id')            //Route to post in Pharmacist schema
-  .post(userController.postDoc);
+  .post(userController.postPhar);
 
 
 
