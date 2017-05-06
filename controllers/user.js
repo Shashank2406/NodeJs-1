@@ -42,26 +42,26 @@ exports.getUsers=function(req,res){
 exports.promiseuse= function(req,res){                  
     User.find({}).exec()
     .then(function(user){
-        var ar = [];
+        var docarray = [];
         return Doc.find({}).exec()
         .then(function(doc){
             if(doc.id==user._id)
             {
                 console.log("Doctor");
-                ar.push(doc);
-                console.log(ar);
+                docarray.push(doc);
+                console.log(docarray);
                 return res.json("Check Log")
             }
         })
         .then(function(){
-            var ar1 = [];
+            var phararray = [];
             return Phar.find({}).exec()
             .then(function(phar){
             if(phar.id==user._id)
             {
                 console.log("Pharmacist");
-                ar1.push(phar);
-                console.log(ar1);
+                phararray.push(phar);
+                console.log(phararray);
                 //return res.json(phar)
             }
         })
