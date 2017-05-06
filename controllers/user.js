@@ -1,6 +1,6 @@
 var User = require('../models/user');
-var Doc = require('../models/doctor');
-var Phar = require('../models/Phar');
+var Doc = require('../models/doc');
+var Phar = require('../models/phar');
 
 
 

@@ -3,6 +3,7 @@ var router = express.Router();
 
 var userController = require('../controllers/user');
 
+
 router.route('/users')
   .post(userController.postUsers)
   .get(userController.getUsers);
@@ -20,10 +21,6 @@ router.route('/doc/post/:id')             //Route to post in Doctor schema
 
 router.route('/phar/post/:id')            //Route to post in Pharmacist schema
   .post(userController.postDoc);
-
-
-
-
 
 
 
