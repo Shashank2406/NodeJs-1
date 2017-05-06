@@ -1,4 +1,8 @@
 var User = require('../models/user');
+var Doc = require('../models/doctor');
+var Phar = require('../models/Phar');
+
+
 
 exports.postUsers = function (req, res) {
     var user = new User({
@@ -22,6 +26,55 @@ exports.postUsers = function (req, res) {
         
     });
 };
+
+exports.postDoc = function (req,res){                       //PostDoc function post data to doctor schema
+    var doc = new Doc({
+        name: req.body.name,
+        designation: req.body.designation,
+        user_id: req.params.id,
+        created_at: new Date(),
+        updated_at: ""
+    });
+
+    doc.save(function(err,response){
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json({
+                success: true,
+                body:response
+            })
+        }
+    })
+}
+
+exports.postPhar = function (req,res){                       //PostPhar function post data to Pharmacist schema
+    var phar = new Phar({
+        name: req.body.name,
+        designation: req.body.designation,
+        user_id: req.params.id,
+        created_at: new Date(),
+        updated_at: ""
+    });
+
+    phar.save(function(err,response){
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json({
+                success: true,
+                body:response
+            })
+        }
+    })
+}
+
 
 
 exports.getUsers=function(req,res){

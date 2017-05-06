@@ -15,5 +15,16 @@ router.route('/users/update/:id')
 router.route('/users/search/:reg')
   .get(userController.regexsearch);
 
+router.route('/doc/post/:id')             //Route to post in Doctor schema 
+  .post(userController.postDoc);
+
+router.route('/phar/post/:id')            //Route to post in Pharmacist schema
+  .post(userController.postDoc);
+
+
+
+
+
+
 
 module.exports = router;

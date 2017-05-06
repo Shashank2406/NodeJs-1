@@ -21,7 +21,7 @@ routes = require('./routes/index')
 app.use('/api', routes);
 
 // Use environment defined port or 3000
-var port = process.env.PORT || 2001;
+var port = process.env.PORT || 2000;
 
 // Start the server
 app.listen(port);
